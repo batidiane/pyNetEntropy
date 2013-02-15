@@ -1,0 +1,37 @@
+Modular entropy calculation and vizualisation from network capture
+------------------------------------------------------------------
+This project is an educational project that merge the work done séparatly in 2 different projects:
+Network-Entropy and Network-Entropy2.
+
+The aim of this work is to use a pcap file or a live pcap stream to calculate the entropy of TCP, UDP and/or
+ICMP payload of packets seen using different algorithms (shannon or an approximation of kolmogorov) and try to
+visualize the results using different technics (graphs, sound...). Several options are added to format the output.
+
+How to use it:
+--------------
+pynetentropy.py [-h] [-i INTERFACE | -f PCAPFILE] [-a {sha,kol}] bpf
+
+Calculate entropy from live capture or pcap file
+
+positional arguments:
+  bpf                   BPF filter like "tcp and port 22"
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i INTERFACE, --interface INTERFACE
+                        live capture from an interface (default:lo)
+  -f PCAPFILE, --file PCAPFILE
+                        filename of a capture file to read from
+  -a {sha,kol}, --algo {sha,kol}
+                        entropy algorithm. 2 choices: "sha" for shannon
+                        entropy or "kol" for kolmogorov
+                        
+You will need to install the dpkt library from http://code.google.com/p/dpkt
+
+Output format:
+--------------
+epoch | ip_src:port > ip_dst:port | protocole name | entropy | payload length
+
+output samples:
+1359930733 | 192.168.178.25:59063 > 173.194.70.113:443 | proto:TCP | sha:1.503114 | len:450
+1359931779 | 173.194.70.19:443 > 192.168.178.25:34729 | proto:TCP | kol:1.196429 | len:450

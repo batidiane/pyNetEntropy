@@ -22,11 +22,14 @@ optional arguments:
                         live capture from an interface (default:lo)
   -f PCAPFILE, --file PCAPFILE
                         filename of a capture file to read from
-  -a {sha,kol}, --algo {sha,kol}
-                        entropy algorithm. 2 choices: "sha" for shannon
-                        entropy or "kol" for kolmogorov
+  -a {shannon,kolmogorov}, --algo {shannon,kolmogorov}
+                        entropy algorithm. 2 choices: "shannon" for shannon
+                        entropy or "kolmogorov" for kolmogorov
                         
-You will need to install the dpkt library from http://code.google.com/p/dpkt
+You will need to install the folowing librairies:
+   - dpkt from: http://code.google.com/p/dpkt
+   - matplotlib from: http://matplotlib.org
+   - numpy from: http://www.numpy.org/
 
 Output format:
 --------------

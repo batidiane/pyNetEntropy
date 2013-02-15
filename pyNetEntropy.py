@@ -90,7 +90,7 @@ if __name__ == "__main__":
     p = pcap.pcapObject()
     if True == live :
         net, mask = pcap.lookupnet(interface)
-        p.open_live(interface, 65535, 0, 50)
+        p.open_live(interface, 65535, 1, 50)
     else:
         p.open_offline(interface)
     p.setfilter(bpf, 0, 0)

@@ -11,7 +11,7 @@ class ShannonEntropy(AbstractEntropyAlgorithm):
         self.countCharacters(data)
         entropy = 0
         for occurence in self.characters.values():
-            frequency = float(occurence) / len(data)
+            frequency = float(occurence) / self.totalCharacters
             if frequency > 0:
                 entropy += frequency * math.log(frequency,2)
         return -entropy

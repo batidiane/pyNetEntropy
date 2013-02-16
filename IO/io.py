@@ -80,18 +80,22 @@ class IPPacket(Data):
 
         
 def load_printer(printname):
-    mod = __import__('IO.printers', fromlist=IO.__all__)
-    for i in IO.printers.__dict__:
-        try:
-            print i
-            mod_instance = getattr(mod, i)()
-            if mod_instance.getName() == printname:
-                return mod_instance
-        except Exception as e:
-            print e
-    return getattr(mod, IO.printers.default_printer_class)()
+    for mod_name in IO.__printers__:
+        mod = __import__('IO.'+mod_name, fromlist=IO.__all__)
+        for cl in dir(mod):
+            try:
+                print "classe="+cl
+                mod_instance = getattr(mod, cl)()
+                if mod_instance.getName() == printname:
+                    print 'printname='+mod_instance.getName()
+                    return mod_instance
+            except Exception as e:
+                pass
+                #print e
+        
+    #return getattr(mod, IO.printers.default_printer_class)()
 
-
+    
 
 
         

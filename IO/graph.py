@@ -17,8 +17,9 @@ class Graph(AbstractPrinter):
         #self.y=np.zeros((100,2))
         #self.y[:,0]=np.sin(self.x)
         #self.y[:,1]=np.cos(self.x)
-        plt.ion()
+        #plt.ion()
         self.first = True
+        #self.fig = plt.figure()
         #plt.plot(self.x)
         #plt.plot(self.y)
         #self.thread= threading.Thread(None, self.__thread, None)
@@ -31,7 +32,8 @@ class Graph(AbstractPrinter):
     def printData(self,keys, keys_calculated, data):
         timestamp = data['timestamp']
         #self.lock.acquire()
-        plt.clf()
+        self.ax = plt.subplot2grid( (4,4), (0, 2), rowspan=4, colspan=2)
+        #plt.clf()
         for key in keys_calculated:
             try:
                 
@@ -58,11 +60,11 @@ class Graph(AbstractPrinter):
                 #temp2 = np.array(table2)
                 #plt.plot(np.linspace(0,self.nb_print,len(table)),temp)
                 t1,t2 = self.__calc_tabs(key)
-                plt.plot(t2)
+                self.ax.plot(t2)
             except Exception as e:
                 print e
         self.first = False
-        plt.draw()
+        #plt.draw()
         #self.lock.release()
         #for key in self.tables:
         #    temp = np.array(self.tables[key])

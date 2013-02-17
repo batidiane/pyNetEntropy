@@ -2,12 +2,15 @@ from Utils import *
 import IO
 import socket
 from statistics import frequency
+import matplotlib.pyplot as plt
+
 class Data:
     keys_calculated = []
     printers = None
     
     def __init__(self, printnames):
         if Data.printers == None:
+            plt.ion()
             Data.printers = []
             for n in printnames:
                 Data.printers.append(load_printer(n))
@@ -25,8 +28,10 @@ class Data:
         else:
             self.data[name] = value
     def printData(self, keys):
+        plt.clf()
         for n in Data.printers:
             n.printData(keys, Data.keys_calculated, self.data)
+        plt.draw()
 
     def apply_function(self, keys, algorithm):
         for key in keys:
@@ -43,7 +48,7 @@ class Data:
 class IPPacket(Data):
     frequency_calculators = None
     def __init__(self, pktinfos, payload, timestamp):
-        Data.__init__(self, ["graph","console"])
+        Data.__init__(self, ["console", "graph", "bar"])
         self.add('timestamp', timestamp)
         for key in pktinfos:
             self.add(key, pktinfos[key])
@@ -84,10 +89,8 @@ def load_printer(printname):
         mod = __import__('IO.'+mod_name, fromlist=IO.__all__)
         for cl in dir(mod):
             try:
-                print "classe="+cl
                 mod_instance = getattr(mod, cl)()
                 if mod_instance.getName() == printname:
-                    print 'printname='+mod_instance.getName()
                     return mod_instance
             except Exception as e:
                 pass

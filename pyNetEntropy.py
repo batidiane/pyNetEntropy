@@ -83,7 +83,7 @@ if __name__ == "__main__":
     if options.algo:
         algorithms = options.algo
     else:
-        algorithms = 'sha'
+        algorithms = 'shannon kolmogorov' # by default set the two algorithm
         
     load_algorithms(algorithms.split())
     bpf = options.bpf

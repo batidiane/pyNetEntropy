@@ -4,7 +4,7 @@ This project is an educational project that merge the work done séparatly in 2 
 Network-Entropy and Network-Entropy2.
 
 The aim of this work is to use a pcap file or a live pcap stream to calculate the entropy of TCP, UDP and/or
-ICMP payload of packets seen using different algorithms (shannon or an approximation of kolmogorov) and try to
+ICMP payload of packets seen using different algorithms (LZW, shannon or an approximation of kolmogorov) and try to
 visualize the results using different technics (graphs, sound...). Several options are added to format the output.
 
 How to use it:
